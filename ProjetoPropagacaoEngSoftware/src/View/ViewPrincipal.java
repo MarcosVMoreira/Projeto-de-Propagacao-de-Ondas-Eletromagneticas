@@ -13,7 +13,7 @@ import Controller.ControllerPrincipal;
  */
 public class ViewPrincipal extends javax.swing.JFrame {
 
-    ViewResultado viewResultado = new ViewResultado();
+    ViewResultado viewResultado;
     ControllerPrincipal controllerPrincipal = new ControllerPrincipal();
 
     /**
@@ -186,11 +186,27 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculaActionPerformed
+
+        viewResultado = new ViewResultado(controllerPrincipal.calculaPotenciaRecebidaPr(controllerPrincipal.calculaPotenciaEfetivamenteIrradiadaPeirp(Double.parseDouble(txtPotenciaTransmissor.getText()),
+                Double.parseDouble(txtGanhoRx.getText()), Double.parseDouble(txtGanhoTx.getText())), controllerPrincipal.calculaAe(Double.parseDouble(txtDistanciaRadioEnlace.getText()),
+                Double.parseDouble(txtFreqIdaVolta.getText()), Double.parseDouble(txtAtenCabo.getText()), Double.parseDouble(txtAtenConector.getText()))),
+                
+                controllerPrincipal.calculaPotenciaEfetivamenteIrradiadaPeirp(Double.parseDouble(txtPotenciaTransmissor.getText()),
+                        Double.parseDouble(txtGanhoRx.getText()), Double.parseDouble(txtGanhoTx.getText())),
+                
+                controllerPrincipal.calculaRaio(Double.parseDouble(txtDistanciaRadioEnlace.getText()),
+                        Double.parseDouble(txtFreqIdaVolta.getText())),
+                
+                
+                Double.parseDouble(txtAlturaTx.getText()), 
+                
+                Double.parseDouble(txtAlturaRx.getText()),
         
-        System.out.println(controllerPrincipal.calculaRaio(Double.parseDouble(txtDistanciaRadioEnlace.getText()), Double.parseDouble(txtFreqIdaVolta.getText())));
+                Double.parseDouble(txtFreqIdaVolta.getText()),
         
-        
-        
+                Double.parseDouble(txtDistanciaRadioEnlace.getText()));
+
+
         viewResultado.setVisible(true);
     }//GEN-LAST:event_btnCalculaActionPerformed
 

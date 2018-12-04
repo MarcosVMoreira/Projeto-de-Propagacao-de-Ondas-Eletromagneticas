@@ -5,6 +5,9 @@
  */
 package View;
 
+import java.awt.BorderLayout;
+import util.GraficoElipse;
+
 /**
  *
  * @author Marcos
@@ -15,13 +18,22 @@ public class ViewResultado extends javax.swing.JFrame {
      * Creates new form ViewResultado
      */
 //    private double potenciaRecebida, potEfetIrradiada, raio, t1, t2;
+    public ViewResultado(double potenciaRecebida, double potEfetIrradiada, double raio, double t1, double t2, double frequencia, double distancia) {
+        initComponents();
+        setLocationRelativeTo(null);
 
-    public ViewResultado(double potenciaRecebida, double potEfetIrradiada, double raio, double t1, double t2) {
         lbPotenciaEfetivamenteIrradiada.setText(Double.toString(potEfetIrradiada));
         lbPotenciaRecebida.setText(Double.toString(potenciaRecebida));
         lbRaio.setText(Double.toString(raio));
-        initComponents();
-        setLocationRelativeTo(null);
+
+        GraficoElipse graficoElipse = new GraficoElipse();
+
+        this.jpnGrafico.setLayout(new BorderLayout());
+
+        this.jpnGrafico.add(graficoElipse.criarGrafico(t1, t2, raio, frequencia, distancia));
+
+        pack();
+
     }
 
     public ViewResultado() {
@@ -44,6 +56,7 @@ public class ViewResultado extends javax.swing.JFrame {
         lbPotenciaRecebida = new javax.swing.JLabel();
         lbPotenciaEfetivamenteIrradiada = new javax.swing.JLabel();
         lbRaio = new javax.swing.JLabel();
+        jpnGrafico = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Resultado");
@@ -60,6 +73,17 @@ public class ViewResultado extends javax.swing.JFrame {
 
         lbRaio.setText(" ");
 
+        javax.swing.GroupLayout jpnGraficoLayout = new javax.swing.GroupLayout(jpnGrafico);
+        jpnGrafico.setLayout(jpnGraficoLayout);
+        jpnGraficoLayout.setHorizontalGroup(
+            jpnGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jpnGraficoLayout.setVerticalGroup(
+            jpnGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 210, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,19 +91,23 @@ public class ViewResultado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpnGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbPotenciaRecebida))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbPotenciaEfetivamenteIrradiada))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbRaio)))
-                .addContainerGap(201, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbPotenciaRecebida))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbPotenciaEfetivamenteIrradiada))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRaio)))
+                        .addGap(0, 195, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +124,9 @@ public class ViewResultado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(lbRaio))
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jpnGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -141,6 +171,7 @@ public class ViewResultado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jpnGrafico;
     private javax.swing.JLabel lbPotenciaEfetivamenteIrradiada;
     private javax.swing.JLabel lbPotenciaRecebida;
     private javax.swing.JLabel lbRaio;
