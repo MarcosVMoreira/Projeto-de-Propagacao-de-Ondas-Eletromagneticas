@@ -14,6 +14,7 @@ public class ModelPrincipal {
     private float alturaTx;
     private float alturaRx;
     private float potTransmissor;
+    private float atenuacaoCabo;
     private float atenuacaoConector;
     private float ganhoAntenaTx;
     private float ganhoAntenaRx;
@@ -145,6 +146,20 @@ public class ModelPrincipal {
      */
     public void setFreqVolta(float freqVolta) {
         this.freqVolta = freqVolta;
+    }
+
+    /**
+     * @return the atenuacaoCabo
+     */
+    public float getAtenuacaoCabo() {
+        return atenuacaoCabo;
+    }
+
+    /**
+     * @param atenuacaoCabo the atenuacaoCabo to set
+     */
+    public void setAtenuacaoCabo(float atenuacaoCabo) {
+        this.atenuacaoCabo = atenuacaoCabo;
     }
 
 }

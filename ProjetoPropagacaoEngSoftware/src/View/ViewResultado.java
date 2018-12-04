@@ -14,8 +14,19 @@ public class ViewResultado extends javax.swing.JFrame {
     /**
      * Creates new form ViewResultado
      */
+//    private double potenciaRecebida, potEfetIrradiada, raio, t1, t2;
+
+    public ViewResultado(double potenciaRecebida, double potEfetIrradiada, double raio, double t1, double t2) {
+        lbPotenciaEfetivamenteIrradiada.setText(Double.toString(potEfetIrradiada));
+        lbPotenciaRecebida.setText(Double.toString(potenciaRecebida));
+        lbRaio.setText(Double.toString(raio));
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+
     public ViewResultado() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,17 +38,65 @@ public class ViewResultado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lbPotenciaRecebida = new javax.swing.JLabel();
+        lbPotenciaEfetivamenteIrradiada = new javax.swing.JLabel();
+        lbRaio = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Resultado");
+
+        jLabel1.setText("Potência recebida:");
+
+        jLabel2.setText("Potência efetivamente irradiada:");
+
+        jLabel3.setText("Raio:");
+
+        lbPotenciaRecebida.setText(" ");
+
+        lbPotenciaEfetivamenteIrradiada.setText(" ");
+
+        lbRaio.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbPotenciaRecebida))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbPotenciaEfetivamenteIrradiada))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbRaio)))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lbPotenciaRecebida))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lbPotenciaEfetivamenteIrradiada))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lbRaio))
+                .addContainerGap(234, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +138,11 @@ public class ViewResultado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lbPotenciaEfetivamenteIrradiada;
+    private javax.swing.JLabel lbPotenciaRecebida;
+    private javax.swing.JLabel lbRaio;
     // End of variables declaration//GEN-END:variables
 }

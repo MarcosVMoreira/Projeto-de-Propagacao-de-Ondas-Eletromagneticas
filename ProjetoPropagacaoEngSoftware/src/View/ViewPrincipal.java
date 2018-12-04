@@ -5,17 +5,23 @@
  */
 package View;
 
+import Controller.ControllerPrincipal;
+
 /**
  *
  * @author Marcos
  */
 public class ViewPrincipal extends javax.swing.JFrame {
 
+    ViewResultado viewResultado = new ViewResultado();
+    ControllerPrincipal controllerPrincipal = new ControllerPrincipal();
+
     /**
      * Creates new form ViewPrincipal
      */
     public ViewPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -42,19 +48,19 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtDistanciaRadioEnlace = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtFreqIda = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtFreqVolta = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txtFreqIdaVolta = new javax.swing.JTextField();
+        btnCalcula = new javax.swing.JButton();
+        btnLimpa = new javax.swing.JButton();
+        btnCancela = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtAtenCabo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
 
-        jLabel1.setText("Altura da torre Tx (em centímetros):");
+        jLabel1.setText("Altura da torre Tx (em m):");
 
-        jLabel2.setText("Altura da torre Rx (em centímetros):");
+        jLabel2.setText("Altura da torre Rx (em m):");
 
         jLabel3.setText("Potência do transmissor:");
 
@@ -64,17 +70,32 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         jLabel7.setText("Ganho da antena Rx (em dBi):");
 
-        jLabel8.setText("Distância do rádio enlace:");
+        jLabel8.setText("Distância do rádio enlace (em km):");
 
-        jLabel9.setText("Freq. de ida:");
+        jLabel9.setText("Freq. de ida/volta (em MHz):");
 
-        jLabel10.setText("Freq. de volta:");
+        btnCalcula.setText("Calcular");
+        btnCalcula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculaActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Calcular");
+        btnLimpa.setText("Limpar");
+        btnLimpa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpaActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Limpar");
+        btnCancela.setText("Cancelar");
+        btnCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelaActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Cancelar");
+        jLabel5.setText("Atenuação por cabo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,15 +105,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAlturaTx, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCalcula)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addComponent(btnCancela))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -102,18 +119,20 @@ public class ViewPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel10))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAlturaTx)
                             .addComponent(txtAlturaRx)
                             .addComponent(txtPotenciaTransmissor)
                             .addComponent(txtAtenConector)
                             .addComponent(txtGanhoTx)
                             .addComponent(txtGanhoRx)
                             .addComponent(txtDistanciaRadioEnlace)
-                            .addComponent(txtFreqIda)
-                            .addComponent(txtFreqVolta, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(59, Short.MAX_VALUE))
+                            .addComponent(txtFreqIdaVolta)
+                            .addComponent(txtAtenCabo))))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,6 +149,10 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPotenciaTransmissor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtAtenCabo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -149,22 +172,43 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(txtFreqIda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(txtFreqVolta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFreqIdaVolta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jButton2)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(btnCalcula)
+                        .addComponent(btnLimpa))
+                    .addComponent(btnCancela))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCalculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculaActionPerformed
+        
+        System.out.println(controllerPrincipal.calculaRaio(Double.parseDouble(txtDistanciaRadioEnlace.getText()), Double.parseDouble(txtFreqIdaVolta.getText())));
+        
+        
+        
+        viewResultado.setVisible(true);
+    }//GEN-LAST:event_btnCalculaActionPerformed
+
+    private void btnLimpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpaActionPerformed
+        txtAlturaRx.setText("");
+        txtAlturaTx.setText("");
+        txtAtenCabo.setText("");
+        txtAtenConector.setText("");
+        txtDistanciaRadioEnlace.setText("");
+        txtFreqIdaVolta.setText("");
+        txtGanhoRx.setText("");
+        txtGanhoTx.setText("");
+        txtPotenciaTransmissor.setText("");
+    }//GEN-LAST:event_btnLimpaActionPerformed
+
+    private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCancelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,24 +246,24 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCalcula;
+    private javax.swing.JButton btnCancela;
+    private javax.swing.JButton btnLimpa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtAlturaRx;
     private javax.swing.JTextField txtAlturaTx;
+    private javax.swing.JTextField txtAtenCabo;
     private javax.swing.JTextField txtAtenConector;
     private javax.swing.JTextField txtDistanciaRadioEnlace;
-    private javax.swing.JTextField txtFreqIda;
-    private javax.swing.JTextField txtFreqVolta;
+    private javax.swing.JTextField txtFreqIdaVolta;
     private javax.swing.JTextField txtGanhoRx;
     private javax.swing.JTextField txtGanhoTx;
     private javax.swing.JTextField txtPotenciaTransmissor;
