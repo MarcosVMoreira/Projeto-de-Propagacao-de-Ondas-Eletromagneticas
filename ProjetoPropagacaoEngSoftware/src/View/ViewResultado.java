@@ -6,7 +6,8 @@
 package View;
 
 import java.awt.BorderLayout;
-import util.GraficoElipse;
+import javax.swing.JFrame;
+import Utils.GeraGrafico;
 
 /**
  *
@@ -26,7 +27,7 @@ public class ViewResultado extends javax.swing.JFrame {
         lbPotenciaRecebida.setText(Double.toString(potenciaRecebida));
         lbRaio.setText(Double.toString(raio));
 
-        GraficoElipse graficoElipse = new GraficoElipse();
+        GeraGrafico graficoElipse = new GeraGrafico();
 
         this.jpnGrafico.setLayout(new BorderLayout());
 
@@ -53,25 +54,28 @@ public class ViewResultado extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lbPotenciaRecebida = new javax.swing.JLabel();
-        lbPotenciaEfetivamenteIrradiada = new javax.swing.JLabel();
-        lbRaio = new javax.swing.JLabel();
         jpnGrafico = new javax.swing.JPanel();
+        lbPotenciaRecebida = new javax.swing.JTextField();
+        lbPotenciaEfetivamenteIrradiada = new javax.swing.JTextField();
+        lbRaio = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Resultado");
 
-        jLabel1.setText("Potência recebida:");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(88, 88, 88));
+        jLabel1.setText("Potência recebida [dBm]");
 
-        jLabel2.setText("Potência efetivamente irradiada:");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(88, 88, 88));
+        jLabel2.setText("Potência efetivamente irradiada [dBm]");
 
-        jLabel3.setText("Raio:");
-
-        lbPotenciaRecebida.setText(" ");
-
-        lbPotenciaEfetivamenteIrradiada.setText(" ");
-
-        lbRaio.setText(" ");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(88, 88, 88));
+        jLabel3.setText("Raio da primeira zona de Fresnel [m]");
 
         javax.swing.GroupLayout jpnGraficoLayout = new javax.swing.GroupLayout(jpnGrafico);
         jpnGrafico.setLayout(jpnGraficoLayout);
@@ -81,8 +85,50 @@ public class ViewResultado extends javax.swing.JFrame {
         );
         jpnGraficoLayout.setVerticalGroup(
             jpnGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
+            .addGap(0, 252, Short.MAX_VALUE)
         );
+
+        lbPotenciaRecebida.setEditable(false);
+        lbPotenciaRecebida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbPotenciaRecebida.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        lbPotenciaEfetivamenteIrradiada.setEditable(false);
+        lbPotenciaEfetivamenteIrradiada.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbPotenciaEfetivamenteIrradiada.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        lbRaio.setEditable(false);
+        lbRaio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbRaio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setText("Resultados");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("Fechar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,44 +139,56 @@ public class ViewResultado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpnGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbPotenciaRecebida))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbPotenciaEfetivamenteIrradiada))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbRaio)))
-                        .addGap(0, 195, Short.MAX_VALUE)))
+                                .addComponent(lbPotenciaEfetivamenteIrradiada))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRaio))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbPotenciaRecebida, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lbPotenciaRecebida))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lbPotenciaEfetivamenteIrradiada))
+                    .addComponent(jLabel1)
+                    .addComponent(lbPotenciaRecebida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(lbRaio))
-                .addGap(18, 18, 18)
-                .addComponent(jpnGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(lbPotenciaEfetivamenteIrradiada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lbRaio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpnGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,12 +226,15 @@ public class ViewResultado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jpnGrafico;
-    private javax.swing.JLabel lbPotenciaEfetivamenteIrradiada;
-    private javax.swing.JLabel lbPotenciaRecebida;
-    private javax.swing.JLabel lbRaio;
+    private javax.swing.JTextField lbPotenciaEfetivamenteIrradiada;
+    private javax.swing.JTextField lbPotenciaRecebida;
+    private javax.swing.JTextField lbRaio;
     // End of variables declaration//GEN-END:variables
 }

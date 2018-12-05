@@ -20,11 +20,12 @@ public class ControllerPrincipal {
     }
 
     public double calculaAe(double distancia, double frequencia, double atenuacaoCabo, double atenuacaoConector) {
-        return (32.44 + 20 * Math.log10(distancia) + 20 * Math.log10(frequencia)) + atenuacaoCabo + atenuacaoConector;
+        return (32.44 + 20 * Math.log10(distancia) + 20 * Math.log10(frequencia)) + (atenuacaoCabo * distancia) + atenuacaoConector;
     }
     
     public double calculaPotenciaEfetivamenteIrradiadaPeirp (double potenciaTransmissorPx, double ganhoAntenaTx, double ganhoAntenaRx) {
-        return potenciaTransmissorPx + ganhoAntenaRx + ganhoAntenaTx;
+        double potenciaTransmissorPxdBm = (10 * Math.log10(potenciaTransmissorPx/0.001));
+        return potenciaTransmissorPxdBm + ganhoAntenaRx + ganhoAntenaTx;
     }
     
     public double calculaPotenciaRecebidaPr (double pEirp, double aE) {
