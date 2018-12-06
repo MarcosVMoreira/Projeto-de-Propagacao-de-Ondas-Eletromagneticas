@@ -57,7 +57,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         txtAtenCabo = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
@@ -159,7 +158,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(195, 195, 195));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(88, 88, 88));
-        jLabel5.setText("Atenuação do cabo");
+        jLabel5.setText("Atenuação do cabo [dB/m]");
 
         txtAtenCabo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtAtenCabo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -185,10 +184,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(88, 88, 88));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "dB/m", "dB/100m" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,10 +218,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAtenCabo, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel4)
                             .addComponent(txtAtenConector, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,9 +235,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel7))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAlturaTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAtenCabo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,7 +267,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCancela)
                         .addComponent(btnLimpa)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -284,8 +275,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
     private void btnCalculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculaActionPerformed
 
-        double atenuacao = 0.0;
-        
         if(txtAlturaTx.getText().equals(""))
             JOptionPane.showMessageDialog(null, "Campo altura da antena transmissora vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
         else if(txtAlturaRx.getText().equals(""))
@@ -306,30 +295,33 @@ public class ViewPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campo potência de transmissão vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
         else
         {
-            if(jComboBox1.getSelectedIndex() == 0)
-                atenuacao = Double.parseDouble(txtAtenCabo.getText());
-            else
-                atenuacao = Double.parseDouble(txtAtenCabo.getText()) / 100;
-            
-            System.out.println(atenuacao);
-            
-            viewResultado = new ViewResultado(controllerPrincipal.calculaPotenciaRecebidaPr(controllerPrincipal.calculaPotenciaEfetivamenteIrradiadaPeirp(Double.parseDouble(txtPotenciaTransmissor.getText()),
-                    Double.parseDouble(txtGanhoRx.getText()), Double.parseDouble(txtGanhoTx.getText())), controllerPrincipal.calculaAe(Double.parseDouble(txtDistanciaRadioEnlace.getText()),
-                    Double.parseDouble(txtFreqIdaVolta.getText()), atenuacao, Double.parseDouble(txtAtenConector.getText()))),
-
+            viewResultado = new ViewResultado(controllerPrincipal.calculaPotenciaRecebidaPr(
                     controllerPrincipal.calculaPotenciaEfetivamenteIrradiadaPeirp(Double.parseDouble(txtPotenciaTransmissor.getText()),
-                            Double.parseDouble(txtGanhoRx.getText()), Double.parseDouble(txtGanhoTx.getText())),
+                    Double.parseDouble(txtGanhoTx.getText()), 
+                    Double.parseDouble(txtAtenConector.getText()), 
+                    Double.parseDouble(txtAlturaTx.getText()), 
+                    Double.parseDouble(txtAtenCabo.getText())),
+                    
+                    controllerPrincipal.calculaAe(Double.parseDouble(txtDistanciaRadioEnlace.getText()),
+                    Double.parseDouble(txtFreqIdaVolta.getText())),
+                    
+                    Double.parseDouble(txtAtenConector.getText()),
+                    Double.parseDouble(txtAlturaRx.getText()),
+                    Double.parseDouble(txtAtenCabo.getText())),
+                    
+                    controllerPrincipal.calculaPotenciaEfetivamenteIrradiadaPeirp(Double.parseDouble(txtPotenciaTransmissor.getText()),
+                    Double.parseDouble(txtGanhoTx.getText()), 
+                    Double.parseDouble(txtAtenConector.getText()), 
+                    Double.parseDouble(txtAlturaTx.getText()), 
+                    Double.parseDouble(txtAtenCabo.getText())),
 
                     controllerPrincipal.calculaRaio(Double.parseDouble(txtDistanciaRadioEnlace.getText()),
-                            Double.parseDouble(txtFreqIdaVolta.getText())),
+                    Double.parseDouble(txtFreqIdaVolta.getText())),
 
 
                     Double.parseDouble(txtAlturaTx.getText()), 
-
                     Double.parseDouble(txtAlturaRx.getText()),
-
                     Double.parseDouble(txtFreqIdaVolta.getText()),
-
                     Double.parseDouble(txtDistanciaRadioEnlace.getText()));
 
 
@@ -392,7 +384,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCalcula;
     private javax.swing.JButton btnCancela;
     private javax.swing.JButton btnLimpa;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
