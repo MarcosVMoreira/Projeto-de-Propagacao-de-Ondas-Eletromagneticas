@@ -5,10 +5,10 @@
 # Imagens do Software
 
 <p align = "center">
-  <img src="https://raw.githubusercontent.com/MarcosVMoreira/Projeto-de-Propagacao-de-Ondas-Eletromagneticas/master/Imagens%20do%20sistema/Principal.png" alt="Principal" width="250"/>
+  <img src="https://raw.githubusercontent.com/MarcosVMoreira/Projeto-de-Propagacao-de-Ondas-Eletromagneticas/master/Imagens%20do%20sistema/Principal.png" alt="Principal" width="500"/>
 </p>      <br>
 <p align = "center">
-  <img src="hhttps://raw.githubusercontent.com/MarcosVMoreira/Projeto-de-Propagacao-de-Ondas-Eletromagneticas/master/Imagens%20do%20sistema/Resultado.png" alt="Resultados" width="250"/>
+  <img src="https://raw.githubusercontent.com/MarcosVMoreira/Projeto-de-Propagacao-de-Ondas-Eletromagneticas/master/Imagens%20do%20sistema/Resultado.png" alt="Resultados" width="500"/>
 </p>     <br> 
 
 # Pré-Requisitos
